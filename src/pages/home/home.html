@@ -1,14 +1,59 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+      <ion-title class="font">
+        Home
+      </ion-title>
+    </button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <img class="camera" src="../../assets/icon/camera.png" (click)=" openCam()">
+  <h5>Open Camera</h5>
+  <br>
+  <form [formGroup]="item" (ngSubmit)="postForm()">
+    <ion-list>
+      <!-- <ion-item> -->
+      <!-- <ion-label floating>Image</ion-label> -->
+      <img src={{path}}>
+      <!-- </ion-item> -->
+
+      <div padding class="error warn" *ngIf="item.get('img').hasError('required') && item.get('title').touched">
+        Please input image
+      </div>
+
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+
+      <div padding class="error warn" *ngIf="item.get('title').hasError('required') && item.get('title').touched">
+        Please input your title
+      </div>
+
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-input type="text" formControlName="description"></ion-input>
+      </ion-item>
+
+      <div padding class="error warn" *ngIf="item.get('description').hasError('required') && item.get('description').touched">
+        Please input your description
+      </div>
+
+      <button ion-button padding round type="submit" class="create font">Create</button>
+      <button ion-button padding round type="button" class="create font" (click)="getItem()">RetriveList</button>
+    </ion-list>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let one of list">
+      <ion-avatar item-start>
+        <img src="{{one.img}}">
+      </ion-avatar>
+      <h2>{{one.title}}</h2>
+      <p>{{one.description}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

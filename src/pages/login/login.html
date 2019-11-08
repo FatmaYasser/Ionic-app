@@ -1,0 +1,39 @@
+<ion-header>
+
+    <ion-navbar hideBackButton color="primary">
+        <ion-title>Login</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="user" (ngSubmit)="logForm()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+
+            <div padding *ngIf="email.hasError('required') && email.touched" class="warn">Email is required</div>
+            <div padding *ngIf="email.hasError('pattern') && email.touched" class="warn">invalid Email</div>
+            <div padding *ngIf="email.valid" class="valid">Ok!</div>
+
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <div padding *ngIf="password.hasError('required') && password.touched" class="warn">password is required</div>
+            <div padding *ngIf="password.hasError('pattern') && password.touched" class="warn">invalid password</div>
+            <div padding *ngIf="password.hasError('minLength') && password.touched" class="warn">must at least 6 char
+            </div>
+
+            <div padding *ngIf="password.valid" class="valid">Ok!</div>
+
+            <div padding>
+                <button ion-button round type="submit">Sign In</button>
+            </div>
+        </ion-list>
+    </form>
+
+</ion-content>

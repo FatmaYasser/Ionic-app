@@ -1,5 +1,7 @@
 {
   "name": "lastApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

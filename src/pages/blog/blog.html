@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Blog</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let post of posts">
+    <ion-card-header>
+      {{post.title}}
+    </ion-card-header>
+    <ion-card-content>
+      {{post.body}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+<ion-footer no-shadow>
+
+  <button ion-button outline round block item-end icon-start class="font" (click)="go()">
+    <ion-icon name="star"></ion-icon>
+    Create new post
+  </button>
+</ion-footer>
